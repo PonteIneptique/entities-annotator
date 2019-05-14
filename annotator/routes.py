@@ -7,7 +7,10 @@ from flask import render_template, request
 def index():
     return render_template(
         "main/index.html",
-        words=Word.query.all()
+        words=Word.query.paginate(
+            page=int(request.args.get("page", 1)),
+            per_page=50
+        )
     )
 
 

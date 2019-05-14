@@ -7,6 +7,7 @@ class Categories(enum.Enum):
     Pers = "#697689"
     Event = "#37D67A"
     Place = "#2CCCE4"
+    Wrong = "#FFFFFF"
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
