@@ -1,7 +1,25 @@
-from annotator.app import app
-from flask import render_template
+from annotator.app import app, db
+from annotator.models import Word, Mention
+from flask import render_template, request
 
 
 @app.route("/")
 def index():
-    return render_template("main/index.html")
+    return render_template(
+        "main/index.html",
+        words=Word.query.all()
+    )
+
+
+@app.route("/word/<int:word_id>", methods=("POST", "GET"))
+def word(word_id):
+    word = Word.query.get_or_404(word_id)
+    if request.method == "POST":
+        word.categories = request.form.get("category", None)
+    db.session.add(word)
+    db.session.commit()
+    return render_template(
+        "main/word.html",
+        word=word
+    )
+

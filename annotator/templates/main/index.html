@@ -3,9 +3,12 @@
 {% block content %}
     <div class="ui text container">
       <h1>Welcome to Entities Annotator !</h1>
-      <p>Pyrrha is a simple Python Flask WebApp to fasten the post-correction of lemmatized and morpho-syntactic tagged corpora.</p>
-      <p>It is under active development at the <a href="http://www.chartes.psl.eu">École Nationale des Chartes</a> and can
-      be found on <a href="https://github.com/hipster-philology/pyrrha">github</a>.</p>
-        <p>To cite it in a paper, please use the information available on <a href="https://doi.org/10.5281/zenodo.2325427">Zenodo</a></p>
+        {% for word in words %}
+          <a class="badge
+          {% if word.categories %}cat-{{word.categories.name}}-border{% else %}badge-info{% endif %}"
+             href="{{url_for("word", word_id=word.word_id)}}">
+              {{word.word_text}}
+          </a>
+        {% endfor %}
     </div>
 {% endblock %}

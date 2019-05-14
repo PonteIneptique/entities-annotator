@@ -3,17 +3,10 @@ import os
 
 
 class Categories(enum.Enum):
-    Org = "Organization"
-    Pers = "Person"
-    Event = "Event"
-    Place = "Place"
-
-
-class Colors(enum.Enum):
-    Categories.Org = "#F47373"
-    Categories.Pers = "#697689"
-    Categories.Event = "#37D67A"
-    Categories.Place = "#2CCCE4"
+    Org = "#F47373"
+    Pers = "#697689"
+    Event = "#37D67A"
+    Place = "#2CCCE4"
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -21,6 +14,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+    DEBUG = True
     template_folder = os.path.join(basedir, "templates")
     static_folder = os.path.join(basedir, "statics")
     # SQLALCHEMY_ECHO = True

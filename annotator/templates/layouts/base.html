@@ -1,9 +1,35 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="charset" content="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/typeaheadjs.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/site.css') }}">
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/typeahead.js') }}"></script>
+        <style type="text/css">
+            .bg-dark, .navbar-dark { background-color : rgb(189, 5, 45)!important; }
+            .kwic { color: rgb(189, 5, 45)!important; text-decoration: underline;}
+
+            {% for cat in categories %}
+                .cat-{{cat.name}}-border { color: {{cat.value}}; border:1px solid {{cat.value}}; }
+                .cat-{{cat.name}} { background-color: {{cat.value}};}
+            {% endfor %}
+        </style>
+        <title>Entities ANNOTATOR!</title>
     </head>
     <body>
-        <div class="container-fluid" id="main-container">
+    <nav class="navbar navbar-expand-md navbar-dark enc-colors">
+        <div>
+            <a href="{{url_for("index")}}" class="navbar-brand">Home</a>
+        </div>
+    </nav>
+        <div class="container" id="main-container">
             <div class="row">
               <div class="col-lg-12">
                 {% block content %}{% endblock %}
